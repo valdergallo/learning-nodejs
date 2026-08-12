@@ -1,0 +1,14 @@
+info:
+  name: Get Users
+  type: http
+
+http:
+  method: GET
+  url: "{{host}}/users"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
