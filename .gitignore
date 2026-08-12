@@ -13,6 +13,9 @@ yarn-error.log*
 .env.local
 .env.*.local
 
+# Local SQLite DB
+data.sqlite
+
 # TypeScript
 *.tsbuildinfo
 
