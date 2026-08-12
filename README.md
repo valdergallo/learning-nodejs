@@ -34,7 +34,7 @@ flowchart LR
   A[Routes] --> B[Controllers]
   B --> C[Services]
   C --> D[Repositories]
-  D --> E[DB (SQLite)]
+  D --> E["DB (SQLite)"]
 ```
 
 **Example requests**
