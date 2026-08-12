@@ -15,6 +15,8 @@ yarn-error.log*
 
 # Local SQLite DB
 data.sqlite
+data.sqlite-shm
+data.sqlite-wal
 
 # TypeScript
 *.tsbuildinfo
