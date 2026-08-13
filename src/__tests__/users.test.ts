@@ -9,9 +9,10 @@ import app from '../app';
 
 describe('Users API', () => {
   it('creates and lists users', async () => {
+    const now = Date.now();
     const resCreate = await request(app)
       .post('/users')
-      .send({ name: 'Test', email: 't@x.com' })
+      .send({ name: 'Test', email: `t+${now}@x.com` })
       .set('Accept', 'application/json');
     expect(resCreate.status).toBe(201);
     const resList = await request(app).get('/users');
@@ -20,13 +21,14 @@ describe('Users API', () => {
     expect(resList.body.length).toBeGreaterThanOrEqual(1);
   });
   it('returns 409 for duplicate email', async () => {
+    const now = Date.now();
     await request(app)
       .post('/users')
-      .send({ name: 'Dup', email: 'dup@x.com' })
+      .send({ name: 'Dup', email: `dup+${now}@x.com` })
       .set('Accept', 'application/json');
     const res = await request(app)
       .post('/users')
-      .send({ name: 'Dup2', email: 'dup@x.com' })
+      .send({ name: 'Dup2', email: `dup+${now}@x.com` })
       .set('Accept', 'application/json');
     expect(res.status).toBe(409);
   });
