@@ -52,3 +52,33 @@ curl http://localhost:3000/users
 
 - Use `.env` for local overrides (see `.env.example`).
 - `npm run build` emits JS into `dist/` and a post-build script adds `.js` extensions to relative imports so the built app runs under Node ESM.
+
+**Environment & Node (recommended)**
+
+This project targets Node LTS (v24). Recommended setup using `nvm`:
+
+- Install `nvm` (if not installed):
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
+# then restart your shell or source:
+source ~/.nvm/nvm.sh
+```
+
+- Install and use Node LTS:
+
+```bash
+nvm install --lts
+nvm alias default lts/*
+node -v  # should show v24.x
+npm -v
+```
+
+- Ensure your shell config loads `nvm` automatically (add to `~/.bashrc` / `~/.zshrc`):
+
+```bash
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf "%s" "$HOME/.nvm" || printf "%s" "$XDG_CONFIG_HOME/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \ . "$NVM_DIR/nvm.sh"
+```
+
+CI: the repository's GitHub Actions workflow uses `actions/setup-node` to pin Node v24 for CI runs.

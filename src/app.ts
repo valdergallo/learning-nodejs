@@ -1,5 +1,6 @@
 import express, { type Express } from 'express';
 import userRouter from './routes/userRoutes';
+import config from './config';
 
 const app: Express = express();
 
@@ -13,5 +14,9 @@ app.use('/users', userRouter);
 
 app.use('/static', express.static('public'));
 
-const PORT = process.env.PORT ? Number(process.env.PORT) : 3000;
-app.listen(PORT, () => console.log(`Server listening on http://localhost:${PORT}`));
+if (config.NODE_ENV !== 'test') {
+  const PORT = config.PORT;
+  app.listen(PORT, () => console.log(`Server listening on http://localhost:${PORT}`));
+}
+
+export default app;
