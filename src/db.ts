@@ -1,9 +1,10 @@
 import sqlite3 from 'sqlite3';
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
+import { DB_PATH as CONFIG_DB_PATH } from './config';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const DB_PATH = `${__dirname}/../data.sqlite`;
+const DB_PATH = CONFIG_DB_PATH ?? `${__dirname}/../data.sqlite`;
 
 sqlite3.verbose();
 const db = new sqlite3.Database(DB_PATH);
